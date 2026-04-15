@@ -2,7 +2,7 @@
 <html lang="ru">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes, viewport-fit=cover">
+  <meta name="viewport" content="content="width=device-width, initial-scale=1.0"">
   <title>Тест: Какой вы руководитель?</title>
   <link rel="apple-touch-icon" sizes="180x180" href="assets/favicons/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="assets/favicons/favicon-32x32.png">
@@ -25,7 +25,7 @@
 </head>
 <body class="page">
 <div class="app-container">
-  <!-- ЭКРАН 1: ПРИВЕТСТВИЕ -->
+  <!-- приветствие -->
   <section id="welcomeSection" class="welcome section active">
     <img
       class="welcome__logo"
@@ -59,7 +59,7 @@
     </button>
   </section>
 
-  <!-- ЭКРАН 2: ВОПРОСЫ (шаг за шагом) -->
+  <!-- вопросы -->
   <section id="questionSection" class="question section">
     <h2 class="question__title">
       Тест: «Какой вы руководитель?»
@@ -89,7 +89,7 @@
 
   </section>
 
-  <!-- ЭКРАН 3: ВВОД EMAIL -->
+  <!-- ввод email -->
   <section id="emailSection" class="question section ">
     <h2 class="question__title">
       Тест: «Какой вы руководитель?»
@@ -134,7 +134,7 @@
 
   </section>
 
-  <!-- ЭКРАН 4: УСПЕХ -->
+  <!-- успех -->
   <section id="successScreen" class="question section">
     <h2 class="question__title">
       Тест: «Какой вы руководитель?»
@@ -163,364 +163,6 @@
   </section>
 </div>
 
-<script>
-  (function(){
-    // ---------- НАСТРОЙКИ EMAILJS (ЗАМЕНИТЕ НА СВОИ) ----------
-    const EMAILJS_PUBLIC_KEY = 'wSklYF3NMcOSFIUPr';        // ⚠️ Замените
-    const EMAILJS_SERVICE_ID = 'service_lg8kfx7';        // ⚠️ Замените
-    const EMAILJS_TEMPLATE_ID = 'template_9yjerua';      // ⚠️ Замените
-
-    if (EMAILJS_PUBLIC_KEY !== 'YOUR_PUBLIC_KEY') {
-      emailjs.init(EMAILJS_PUBLIC_KEY);
-    } else {
-      console.warn('EmailJS не настроен — письмо не отправится (демо).');
-    }
-
-    // ---------- ДАННЫЕ ТЕСТА ----------
-    const questions = [
-      {
-        text: 'Когда в команде возникает серьезная проблема, вы:',
-        options: [
-          { letter: 'A', text: 'Беру управление на себя и контролирую каждый шаг', type: 'Авторитарный' },
-          { letter: 'B', text: 'Собираю ключевых сотрудников и обсуждаю решение', type: 'Контролер' },
-          { letter: 'C', text: 'Анализирую ситуацию и выбираю стратегию действий', type: 'Стратег' },
-          { letter: 'D', text: 'Назначаю ответственного и даю свободу действий', type: 'Делегатор' },
-          { letter: 'E', text: 'Помогаю команде самим найти решение', type: 'Наставник' }
-        ]
-      },
-      {
-        text: 'Если сотрудник допустил ошибку:',
-        options: [
-          { letter: 'A', text: 'Жестко указываю на ошибку и требую исправить', type: 'Авторитарный' },
-          { letter: 'B', text: 'Сам быстро исправляю, чтобы не терять время', type: 'Контролер' },
-          { letter: 'C', text: 'Разбираю ситуацию и объясняю, как делать лучше', type: 'Наставник' },
-          { letter: 'D', text: 'Прошу сотрудника самому найти решение', type: 'Делегатор' },
-          { letter: 'E', text: 'Использую ситуацию как обучение для команды', type: 'Наставник' }
-        ]
-      },
-      {
-        text: 'Как вы обычно принимаете решения?',
-        options: [
-          { letter: 'A', text: 'Сам, опираясь на опыт и интуицию', type: 'Авторитарный' },
-          { letter: 'B', text: 'После анализа данных и рисков', type: 'Стратег' },
-          { letter: 'C', text: 'После обсуждения с командой', type: 'Наставник' },
-          { letter: 'D', text: 'Делегирую принятие решения ответственному', type: 'Делегатор' },
-          { letter: 'E', text: 'Стараюсь прийти к общему решению команды', type: 'Наставник' }
-        ]
-      },
-      {
-        text: 'Что для вас важнее всего в работе команды?',
-        options: [
-          { letter: 'A', text: 'Дисциплина и подчинение', type: 'Авторитарный' },
-          { letter: 'B', text: 'Четкое выполнение задач', type: 'Контролер' },
-          { letter: 'C', text: 'Результат и показатели', type: 'Стратег' },
-          { letter: 'D', text: 'Самостоятельность сотрудников', type: 'Делегатор' },
-          { letter: 'E', text: 'Атмосфера и вовлеченность', type: 'Наставник' }
-        ]
-      },
-      {
-        text: 'Когда команда перегружена задачами:',
-        options: [
-          { letter: 'A', text: 'Усиливаю контроль и требую фокус на главном', type: 'Авторитарный' },
-          { letter: 'B', text: 'Сам активно включаюсь в работу', type: 'Контролер' },
-          { letter: 'C', text: 'Пересматриваю стратегию и приоритеты', type: 'Стратег' },
-          { letter: 'D', text: 'Делегирую задачи сильным сотрудникам', type: 'Делегатор' },
-          { letter: 'E', text: 'Обсуждаю с командой, как оптимизировать процессы', type: 'Наставник' }
-        ]
-      },
-      {
-        text: 'Как сотрудники чаще всего описывают ваш стиль?',
-        options: [
-          { letter: 'A', text: 'Жесткий и требовательный', type: 'Авторитарный' },
-          { letter: 'B', text: 'Системный', type: 'Контролер' },
-          { letter: 'C', text: 'Рациональный', type: 'Стратег' },
-          { letter: 'D', text: 'Доверяющий', type: 'Делегатор' },
-          { letter: 'E', text: 'Поддерживающий', type: 'Наставник' }
-        ]
-      },
-      {
-        text: 'Идеальная команда для вас:',
-        options: [
-          { letter: 'A', text: 'Команда, которая четко выполняет указания', type: 'Авторитарный' },
-          { letter: 'B', text: 'Команда дисциплинированных специалистов', type: 'Контролер' },
-          { letter: 'C', text: 'Команда, которая достигает амбициозных целей', type: 'Стратег' },
-          { letter: 'D', text: 'Команда самостоятельных профессионалов', type: 'Делегатор' },
-          { letter: 'E', text: 'Команда, где люди растут и поддерживают друг друга', type: 'Наставник' }
-        ]
-      }
-    ];
-
-    const typeDetails = {
-      'Авторитарный': {
-        description: 'Вы привыкли держать управление в своих руках и быстро принимать решения. Ваш стиль эффективен в кризисных ситуациях и там, где нужна жесткая дисциплина.',
-        strengths: ['быстрые решения', 'контроль', 'высокая требовательность'],
-        risk: 'сотрудники могут бояться проявлять инициативу'
-      },
-      'Контролер': {
-        description: 'Вы создаете порядок и управляемость. Ваша команда редко допускает критические ошибки, потому что процессы четко настроены.',
-        strengths: ['системность', 'контроль качества', 'надежные процессы'],
-        risk: 'команде может не хватать автономии'
-      },
-      'Стратег': {
-        description: 'Вы мыслите на несколько шагов вперед и принимаете решения на основе анализа.',
-        strengths: ['стратегическое мышление', 'приоритизация', 'фокус на результате'],
-        risk: 'команда может ощущать дистанцию'
-      },
-      'Делегатор': {
-        description: 'Вы создаете самостоятельную команду и доверяете сотрудникам.',
-        strengths: ['высокая автономность команды', 'быстрое развитие сотрудников', 'инициативность'],
-        risk: 'иногда нужен более жесткий контроль'
-      },
-      'Наставник': {
-        description: 'Вы строите сильную команду через развитие людей.',
-        strengths: ['доверие', 'вовлеченность команды', 'рост сотрудников'],
-        risk: 'иногда нужно быстрее принимать жесткие решения'
-      }
-    };
-
-    // ---------- СОСТОЯНИЕ ----------
-    let currentStep = 0;                // 0..6 (индекс вопроса)
-    let answers = new Array(7).fill(null); // храним букву выбранного варианта (A,B,C,D,E)
-    const totalQuestions = 7;
-
-    // DOM элементы
-    const welcomeSection = document.getElementById('welcomeSection');
-    const questionSection = document.getElementById('questionSection');
-    const emailSection = document.getElementById('emailSection');
-    const successScreen = document.getElementById('successScreen');
-
-    const startBtn = document.getElementById('startBtn');
-    const prevBtn = document.getElementById('prevBtn');
-    const nextBtn = document.getElementById('nextBtn');
-    const backToQuestionsBtn = document.getElementById('backToQuestionsBtn');
-    const submitEmailBtn = document.getElementById('submitEmailBtn');
-    const restartBtn = document.getElementById('restartBtn');
-
-    const questionText = document.getElementById('questionText');
-    const optionsContainer = document.getElementById('optionsContainer');
-    const currentQNumberSpan = document.getElementById('currentQNumber');
-    const progressFill = document.getElementById('progressFill');
-
-    const userEmailInput = document.getElementById('userEmailInput');
-    const emailError = document.getElementById('emailError');
-
-    // ---------- ВСПОМОГАТЕЛЬНЫЕ ФУНКЦИИ ----------
-    function showScreen(screenId) {
-      document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
-      document.getElementById(screenId).classList.add('active');
-    }
-
-    // Рендер вопроса по currentStep
-    function renderQuestion() {
-      const q = questions[currentStep];
-      questionText.textContent = q.text;
-      currentQNumberSpan.textContent = currentStep + 1;
-      const percent = ((currentStep + 1) / totalQuestions) * 100;
-      progressFill.style.width = percent + '%';
-
-      const selectedLetter = answers[currentStep];
-
-      let html = '';
-      q.options.forEach((opt) => {
-        const isSelected = (selectedLetter === opt.letter);
-        html += `
-          <div class="question__option-card ${isSelected ? 'selected' : ''}" data-opt-letter="${opt.letter}">
-            <span class="question__option-letter">${opt.letter}</span>
-            <span class="question__option-text">${opt.text}</span>
-          </div>
-        `;
-      });
-      optionsContainer.innerHTML = html;
-
-      // обработчики выбора
-      document.querySelectorAll('.question__option-card').forEach(card => {
-        card.addEventListener('click', () => {
-          const letter = card.dataset.optLetter;
-          answers[currentStep] = letter;
-          renderQuestion(); // обновить выделение
-          nextBtn.disabled = false;
-        });
-      });
-
-      // кнопка "Далее" активна только если есть ответ
-      nextBtn.disabled = (answers[currentStep] === null);
-
-      // управление видимостью "Назад"
-      if (currentStep === 0) {
-        prevBtn.style.display = 'none';
-      } else {
-        prevBtn.style.display = 'block';
-      }
-
-      // текст кнопки "Далее"
-      if (currentStep === totalQuestions - 1) {
-        nextBtn.textContent = 'К результату';
-      } else {
-        nextBtn.textContent = `Следующий вопрос →`;
-      }
-    }
-
-    // Переход к следующему шагу
-    function goToNextStep() {
-      if (answers[currentStep] === null) return;
-
-      if (currentStep < totalQuestions - 1) {
-        currentStep++;
-        renderQuestion();
-      } else {
-        // последний вопрос пройден → экран email
-        showScreen('emailSection');
-      }
-    }
-
-    function goToPrevStep() {
-      if (currentStep > 0) {
-        currentStep--;
-        renderQuestion();
-      }
-    }
-
-    // Сброс теста
-    function resetTest() {
-      currentStep = 0;
-      answers = new Array(7).fill(null);
-      renderQuestion();
-      showScreen('welcomeSection');
-      userEmailInput.value = '';
-      emailError.textContent = '';
-      nextBtn.disabled = true;
-    }
-
-    // Подсчёт результата: получаем тип по выбранной букве
-    function calculateResult() {
-      const counts = {
-        'Авторитарный': 0,
-        'Контролер': 0,
-        'Стратег': 0,
-        'Делегатор': 0,
-        'Наставник': 0
-      };
-
-      answers.forEach((letter, idx) => {
-        if (letter) {
-          const question = questions[idx];
-          const selectedOption = question.options.find(opt => opt.letter === letter);
-          if (selectedOption) {
-            counts[selectedOption.type]++;
-          }
-        }
-      });
-
-      let maxType = 'Авторитарный';
-      let maxCount = 0;
-      for (let t in counts) {
-        if (counts[t] > maxCount) {
-          maxCount = counts[t];
-          maxType = t;
-        }
-      }
-      return maxType;
-    }
-
-    // Отправка письма
-    async function sendEmail(email) {
-      const resultType = calculateResult();
-      const detail = typeDetails[resultType];
-
-      // Готовим HTML-список сильных сторон
-      const strengthsHtml = detail.strengths.map(s => `<li>✅ ${s}</li>`).join('');
-
-      // Готовим таблицу с ответами
-      let answersHtml = '';
-      questions.forEach((q, i) => {
-        const letter = answers[i];
-        const selectedOption = q.options.find(opt => opt.letter === letter);
-        const displayLetter = letter || '—';
-        const displayText = selectedOption ? selectedOption.text : 'нет ответа';
-        answersHtml += `<tr><td style="padding:8px; border-bottom:1px solid #e0e7ef;">${i+1}. ${q.text}</td><td style="padding:8px; border-bottom:1px solid #e0e7ef;"><strong>${displayLetter}</strong> ${displayText}</td></tr>`;
-      });
-
-      const templateParams = {
-        to_email: email,
-        subject: 'Ваш результат: Какой вы руководитель?',
-        result_type: resultType,
-        description: detail.description,
-        strengths_list: strengthsHtml,   // передаём готовый HTML-список
-        risk: detail.risk,
-        answers_table: answersHtml        // передаём готовую HTML-таблицу
-      };
-
-      // Если EmailJS не настроен (демо) – просто логируем
-      if (EMAILJS_PUBLIC_KEY === 'YOUR_PUBLIC_KEY') {
-        console.log('[ДЕМО] Параметры письма:', templateParams);
-        return { success: true, demo: true };
-      }
-
-      try {
-        const response = await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, templateParams);
-        console.log('Email sent', response);
-        return { success: true, demo: false };
-      } catch (error) {
-        console.error('EmailJS error', error);
-        throw error;
-      }
-    }
-
-    // Обработка отправки email
-    async function handleEmailSubmit() {
-      const email = userEmailInput.value.trim();
-      emailError.textContent = '';
-
-      if (!email || !/^\S+@\S+\.\S+$/.test(email)) {
-        emailError.textContent = 'Введите корректный email адрес';
-        return;
-      }
-
-      // Проверка, что все вопросы отвечены
-      if (answers.some(a => a === null)) {
-        emailError.textContent = 'Вы ответили не на все вопросы. Вернитесь и завершите тест.';
-        return;
-      }
-
-      submitEmailBtn.disabled = true;
-      submitEmailBtn.innerHTML = `Отправка... <span class="spinner"></span>`;
-
-      try {
-        const sendResult = await sendEmail(email);
-        showScreen('successScreen');
-      } catch (err) {
-        emailError.textContent = 'Ошибка отправки. Попробуйте позже или проверьте настройки.';
-      } finally {
-        submitEmailBtn.disabled = false;
-        submitEmailBtn.textContent = 'Узнать, какой вы руководитель';
-      }
-    }
-
-    // ---------- ПРИВЯЗКА СОБЫТИЙ ----------
-    startBtn.addEventListener('click', () => {
-      currentStep = 0;
-      answers = new Array(7).fill(null);
-      renderQuestion();
-      showScreen('questionSection');
-    });
-
-    nextBtn.addEventListener('click', goToNextStep);
-    prevBtn.addEventListener('click', goToPrevStep);
-
-    backToQuestionsBtn.addEventListener('click', () => {
-      showScreen('questionSection');
-      renderQuestion();
-    });
-
-    submitEmailBtn.addEventListener('click', handleEmailSubmit);
-
-    restartBtn.addEventListener('click', () => {
-      resetTest();
-      showScreen('welcomeSection');
-    });
-
-    // Инициализация первого рендера
-  })();
-</script>
+<script type="module" src="js/main.js"></script>
 </body>
 </html>

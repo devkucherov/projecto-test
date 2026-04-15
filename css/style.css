@@ -68,13 +68,11 @@
     cursor: not-allowed;
   }
 }
-.section
 @media (width < 767px) {
   .button {
     padding: 9px 16px;
   }
 }
-
 
 /* общие стил */
 .page {
@@ -98,7 +96,6 @@
 .section.active {
   display: flex;
 }
-
 
 /* экраны */
 .welcome {
@@ -336,57 +333,10 @@
   }
 }
 
-
-
-/* экран email */
-.email-screen h2 {
-  font-size: 2rem;
-  margin-bottom: 20px;
-}
-
-.email-input-group {
-  margin: 30px 0 20px;
-}
-
-.email-input {
-  width: 100%;
-  padding: 18px 22px;
-  font-size: 1.1rem;
-  border: 2px solid #cbdde9;
-  border-radius: 60px;
-  background: white;
-  transition: 0.15s;
-}
-
-.email-input:focus {
-  border-color: #0a314a;
-  outline: none;
-  box-shadow: 0 0 0 4px rgba(10,49,74,0.1);
-}
-
 .error-message {
   color: #c0352a;
   margin-top: 10px;
   font-weight: 500;
-}
-
-/* экран успеха */
-.success-screen {
-  text-align: center;
-}
-
-.success-icon {
-  font-size: 64px;
-  margin-bottom: 16px;
-}
-
-.success-screen h2 {
-  font-size: 2.2rem;
-  margin-bottom: 16px;
-}
-
-.btn-restart {
-  margin-top: 32px;
 }
 
 /* спиннер */
@@ -404,9 +354,3 @@
 
 @keyframes spin { to { transform: rotate(360deg); } }
 
-/* адаптив */
-@media (max-width: 480px) {
-  .screen { padding: 24px 18px; }
-  .option-card { padding: 14px 12px; }
-  .nav-buttons { flex-direction: column; }
-}
